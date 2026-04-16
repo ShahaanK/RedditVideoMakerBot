@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    font-family: system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif,
+                 "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    background: {{ bg_color }};
+    color: {{ text_color }};
+    padding: 0;
+    margin: 0;
+}
+.screenshot-target {
+    background: {{ card_bg }};
+    border: 1px solid {{ border_color }};
+    border-radius: 8px;
+    padding: 16px;
+    max-width: {{ width }}px;
+    width: {{ width }}px;
+}
+.post-meta {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 10px;
+    font-size: 12px;
+    color: {{ meta_color }};
+}
+.subreddit-icon {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: {{ accent_color }};
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: 700;
+    font-size: 13px;
+}
+.subreddit-name {
+    font-weight: 700;
+    color: {{ text_color }};
+}
+.post-author {
+    color: {{ meta_color }};
+}
+.post-title {
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 1.4;
+    margin-bottom: 12px;
+    color: {{ text_color }};
+    word-wrap: break-word;
+}
+.post-stats {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    font-size: 12px;
+    font-weight: 700;
+    color: {{ meta_color }};
+    margin-top: 8px;
+}
+.stat {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+.upvote-icon {
+    font-size: 16px;
+    color: {{ accent_color }};
+}
+.nsfw-badge {
+    background: #FF585B;
+    color: white;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 2px 6px;
+    border-radius: 3px;
+    margin-left: 4px;
+}
+</style>
+</head>
+<body>
+<div class="screenshot-target">
+    <div class="post-meta">
+        <div class="subreddit-icon">{{ subreddit_initial }}</div>
+        <span class="subreddit-name">r/{{ subreddit_name }}</span>
+        <span class="post-author">• Posted by u/{{ author }}</span>
+    </div>
+    <div class="post-title">
+        {{ title }}
+        {% if is_nsfw %}<span class="nsfw-badge">NSFW</span>{% endif %}
+    </div>
+    <div class="post-stats">
+        <span class="stat"><span class="upvote-icon">⬆</span> {{ score }}</span>
+        <span class="stat">💬 {{ num_comments }} comments</span>
+    </div>
+</div>
+</body>
+</html>

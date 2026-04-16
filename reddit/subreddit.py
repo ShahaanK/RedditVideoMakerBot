@@ -284,10 +284,16 @@ def get_subreddit_threads_json(POST_ID: str):
     content["thread_title"] = html.unescape(submission_data["title"])
     content["thread_id"] = submission_data["id"]
     content["is_nsfw"] = submission_data.get("over_18", False)
+    content["thread_score"] = submission_data.get("score", 0)
+    content["thread_num_comments"] = submission_data.get("num_comments", 0)
+    content["thread_author"] = submission_data.get("author", "[deleted]")
+    content["subreddit_name"] = submission_data.get("subreddit", subreddit_name)
     content["comments"] = []
 
     if storymode:
         selftext = html.unescape(submission_data.get("selftext", ""))
+        selftext_html_raw = submission_data.get("selftext_html", "")
+        content["selftext_html"] = html.unescape(selftext_html_raw) if selftext_html_raw else ""
         if settings.config["settings"]["storymodemethod"] == 1:
             content["thread_post"] = posttextparser(selftext)
         else:
@@ -300,6 +306,8 @@ def get_subreddit_threads_json(POST_ID: str):
 
             comment = child["data"]
             body = html.unescape(comment.get("body", ""))
+            body_html_raw = comment.get("body_html", "")
+            body_html = html.unescape(body_html_raw) if body_html_raw else ""
 
             # Skip removed/deleted
             if body in ["[removed]", "[deleted]"]:
@@ -331,8 +339,11 @@ def get_subreddit_threads_json(POST_ID: str):
             content["comments"].append(
                 {
                     "comment_body": body,
+                    "comment_body_html": body_html,
                     "comment_url": comment.get("permalink", ""),
                     "comment_id": comment.get("id", ""),
+                    "comment_author": comment.get("author", "[deleted]"),
+                    "comment_score": comment.get("score", 0),
                 }
             )
 

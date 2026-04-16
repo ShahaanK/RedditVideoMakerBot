@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    font-family: system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif,
+                 "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    background: {{ bg_color }};
+    color: {{ text_color }};
+    padding: 0;
+    margin: 0;
+}
+.screenshot-target {
+    background: {{ card_bg }};
+    border: 1px solid {{ border_color }};
+    border-radius: 8px;
+    padding: 16px;
+    max-width: {{ width }}px;
+    width: {{ width }}px;
+}
+.story-body {
+    font-size: 16px;
+    line-height: 1.6;
+    color: {{ text_color }};
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+.story-body p {
+    margin-bottom: 12px;
+}
+.story-body p:last-child {
+    margin-bottom: 0;
+}
+.story-body a {
+    color: {{ link_color }};
+    text-decoration: none;
+}
+.story-body blockquote {
+    border-left: 3px solid {{ meta_color }};
+    padding-left: 12px;
+    margin: 10px 0;
+    color: {{ meta_color }};
+}
+</style>
+</head>
+<body>
+<div class="screenshot-target">
+    <div class="story-body">
+        {{ body_html | safe }}
+    </div>
+</div>
+</body>
+</html>

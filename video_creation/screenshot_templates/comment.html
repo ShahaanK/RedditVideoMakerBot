@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    font-family: system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif,
+                 "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    background: {{ bg_color }};
+    color: {{ text_color }};
+    padding: 0;
+    margin: 0;
+}
+.screenshot-target {
+    background: {{ card_bg }};
+    border: 1px solid {{ border_color }};
+    border-radius: 8px;
+    padding: 14px 16px;
+    max-width: {{ width }}px;
+    width: {{ width }}px;
+}
+.comment-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 8px;
+}
+.avatar {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: {{ avatar_color }};
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: 700;
+    font-size: 13px;
+    flex-shrink: 0;
+}
+.comment-author {
+    font-size: 13px;
+    font-weight: 600;
+    color: {{ text_color }};
+}
+.comment-meta {
+    font-size: 12px;
+    color: {{ meta_color }};
+}
+.comment-body {
+    font-size: 15px;
+    line-height: 1.5;
+    color: {{ text_color }};
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+.comment-body p {
+    margin-bottom: 8px;
+}
+.comment-body p:last-child {
+    margin-bottom: 0;
+}
+.comment-body a {
+    color: {{ link_color }};
+    text-decoration: none;
+}
+.comment-body blockquote {
+    border-left: 3px solid {{ meta_color }};
+    padding-left: 12px;
+    margin: 8px 0;
+    color: {{ meta_color }};
+}
+.comment-body code {
+    background: {{ code_bg }};
+    padding: 2px 5px;
+    border-radius: 3px;
+    font-size: 13px;
+}
+.comment-body pre {
+    background: {{ code_bg }};
+    padding: 10px;
+    border-radius: 5px;
+    overflow-x: auto;
+    margin: 8px 0;
+}
+.comment-footer {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    margin-top: 10px;
+    font-size: 12px;
+    font-weight: 700;
+    color: {{ meta_color }};
+}
+.upvote-icon {
+    font-size: 14px;
+    color: {{ accent_color }};
+}
+</style>
+</head>
+<body>
+<div class="screenshot-target">
+    <div class="comment-header">
+        <div class="avatar">{{ author_initial }}</div>
+        <span class="comment-author">{{ author }}</span>
+        <span class="comment-meta">• {{ score }} points</span>
+    </div>
+    <div class="comment-body">
+        {{ body_html | safe }}
+    </div>
+    <div class="comment-footer">
+        <span class="upvote-icon">⬆</span>
+        <span>{{ score }}</span>
+    </div>
+</div>
+</body>
+</html>
